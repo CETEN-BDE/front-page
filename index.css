@@ -1,195 +1,190 @@
-/* Reset and base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Define color variables for consistency */
+:root {
+    --primary: #1e40af;
+    --secondary: #2563eb;
+    --accent: #3b82f6;
+    --text-color: #1a365d;
+    --bg-color: #f0f4f8;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: rgba(226, 232, 240, 0.8);
+    --shadow: rgba(0, 0, 0, 0.1);
 }
 
+/* Base styles */
 body {
-    font-family: 'Segoe UI', 'Arial', sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
-    background-color: #f0f2f5;
-    color: #2c3e50;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
 }
 
 .container {
     max-width: 1200px;
-    margin: 2rem auto;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Header styles */
+/* Header styling */
 header {
     text-align: center;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #3498db, #2c3e50);
-    border-radius: 12px;
-    color: white;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    border-radius: 16px;
+    color: var(--white);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
 }
 
 header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: 1.2em;
 }
 
-/* Section styles */
+/* Section headings */
 .section {
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
 }
 
 .section h2 {
-    color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid #3498db;
+    color: var(--primary);
+    font-size: 2em;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent);
 }
 
-/* Club and Event Cards */
+/* Grid layout for cards with fixed row height */
 .flex-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem 0;
+    grid-auto-rows: 1fr;
+    /* Make rows take equal height */
+    gap: 24px;
 }
 
+/* Card styles: fill the grid cell completely */
 .club-card,
 .event-card {
-    background-color: #ffffff;
-    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid #e1e4e8;
-    height: 200px;
-    overflow-y: auto;
+    box-shadow: 0 4px 6px -1px var(--shadow), 0 2px 4px -1px var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
+/* Hover effect on cards */
 .club-card:hover,
 .event-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px -1px var(--shadow), 0 4px 8px -1px var(--shadow);
 }
 
-.club-card h3,
-.event-card h3 {
-    color: #3498db;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #ecf0f1;
-    position: sticky;
-    top: 0;
-    background-color: #ffffff;
+/* Card content styling */
+.card-content {
+    flex: 1;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Distribute space evenly */
+    gap: 15px;
+    overflow: hidden;
 }
 
-.club-card p,
-.event-card p {
-    color: #666;
-    margin-bottom: 0.8rem;
+.card-content h3 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.4em;
+    font-weight: 600;
 }
 
-/* Links */
-a {
-    color: #3498db;
+/* Paragraph styles inside card-content */
+.card-content p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #475569;
+    line-height: 1.6;
+    min-height: 3.6em;
+}
+
+/* Email link styling */
+.card-content p a {
+    color: var(--accent);
     text-decoration: none;
-    transition: color 0.2s ease;
+    border-bottom: 1px dotted transparent;
+    transition: border-bottom 0.3s ease;
 }
 
-a:hover {
-    color: #2980b9;
-    text-decoration: underline;
+.card-content p:last-child {
+    margin-top: auto;
 }
 
-/* Custom scrollbar */
-.club-card::-webkit-scrollbar,
-.event-card::-webkit-scrollbar {
-    width: 8px;
+.card-content p a:hover {
+    border-bottom: 1px dotted var(--accent);
 }
 
-.club-card::-webkit-scrollbar-track,
-.event-card::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
+/* Custom scrollbar for card content */
+.card-content::-webkit-scrollbar {
+    width: 6px;
 }
 
-.club-card::-webkit-scrollbar-thumb,
-.event-card::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
+.card-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
 }
 
-.club-card::-webkit-scrollbar-thumb:hover,
-.event-card::-webkit-scrollbar-thumb:hover {
-    background: #999;
+.card-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+    transition: background 0.2s ease;
 }
 
-/* Associations section */
-#associations ul {
-    list-style: none;
-    padding: 1rem;
+.card-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
 
-#associations li {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #3498db;
+/* Flex item wrapper (for proper grid item behavior) */
+.flex-item {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Easter egg */
+/* Easter Egg styling */
 .easter-egg {
     text-align: center;
-    margin-top: 3rem;
-    padding: 1rem;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
+    margin-top: 40px;
 }
 
-.easter-egg:hover {
-    opacity: 1;
+.easter-egg a {
+    color: #999;
+    font-size: 0.8em;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        margin: 1rem;
-        padding: 1rem;
-    }
-
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    .section {
-        padding: 1rem;
-    }
-
-    .flex-container {
-        grid-template-columns: 1fr;
-    }
+.easter-egg a:hover {
+    color: var(--accent);
 }
 
-/* Animations */
+/* Fade-in animation for cards */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
 
     to {
@@ -198,6 +193,42 @@ a:hover {
     }
 }
 
-.section {
-    animation: fadeIn 0.5s ease-out;
+.club-card,
+.event-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px var(--shadow), 0 2px 4px -1px var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--card-bg);
+}
+
+/* Stagger animation delays */
+.flex-container>*:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.flex-container>*:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .flex-container {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
 }
